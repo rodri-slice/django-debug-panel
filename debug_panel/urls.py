@@ -6,13 +6,10 @@ debug-panel application.
 """
 from .views import debug_data
 
-try:
-    from django.conf.urls import url
-except ImportError:  # django < 1.4
-    from django.conf.urls.defaults import url
+from django.urls import path
 
 _PREFIX = '__debug__'
 
 urlpatterns = [
-    url(r'^%s/data/(?P<cache_key>\d+\.\d+)/$' % _PREFIX, debug_data, name='debug_data'),
+    path(r'^%s/data/(?P<cache_key>\d+\.\d+)/$' % _PREFIX, debug_data, name='debug_data'),
 ]
